@@ -1,3 +1,15 @@
+---
+Document ID: SIG-PRD-001
+Document Name: Executive Summary
+Project: SIGMATICS
+Tagline: Signals, Quantified.
+Version: 0.1
+Status: Draft
+Owner: Sigmatics Engineering
+Classification: Internal
+Last Updated: Abhijit Saha
+---
+
 # Executive Summary
 
 | Document | Executive Summary |
