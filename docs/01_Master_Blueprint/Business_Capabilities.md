@@ -84,6 +84,7 @@ The identifier provides traceability across requirements, architecture, implemen
 
 | Capability ID | Capability Code | Capability Name | Capability Owner | Capability Owner |
 |---------------|-----------------|-----------------|-----------------|-----------------|
+| CAP-000 | CMP | Regulatory Compliance & User Consent | TBD | Planned |
 | CAP-001 | IAM | Identity & Access | TBD | Planned |
 | CAP-002 | BRC | Broker Connectivity | TBD | Planned |
 | CAP-003 | MKT | Market Intelligence | TBD | Planned |
@@ -99,6 +100,61 @@ The identifier provides traceability across requirements, architecture, implemen
 ---
 
 # Capability Definitions
+
+## CAP-000 — Regulatory Compliance & User Consent (CMP)
+
+### Purpose
+
+Manage user regulatory compliance acknowledgementsby the user.
+
+### Responsibilities
+
+- Present regulatory disclosures before any trading capability is enabled.
+- Manage Terms of Use acceptance.
+- Manage Privacy Policy acceptance.
+- Manage AI Disclosure acceptance.
+- Manage Risk Disclosure acceptance.
+- Maintain version-controlled consent records.
+- Record user acknowledgements for regulatory purposes.
+- Prevent broker connectivity until mandatory consents are completed.
+- Prevent live trading until all compliance prerequisites are satisfied.
+- Maintain an immutable audit trail of compliance events.
+
+### Inputs
+
+- User registration.
+- User login.
+- Policy version updates.
+- Regulatory updates.
+- User consent actions.
+- First trade initiation.
+- Broker connection request.
+
+### Outputs
+
+- Compliance status.
+- Consent records.
+- Policy acceptance history.
+- Broker access authorization.
+- Trading eligibility.
+- Compliance audit events.
+
+ ### Dependencies
+
+- IAM
+- Notification Service
+- Broker Connectivity
+- Audit Service
+- Configuration Service
+- Owned Domain Objects
+- TermsOfUse
+- PrivacyPolicy
+- RiskDisclosure
+- AIDisclosure
+- ConsentRecord
+- ComplianceEvent
+
+---
 
 ## CAP-001 — Identity & Access (IAM)
 
