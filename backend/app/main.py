@@ -2,13 +2,10 @@ import logging
 
 from app.core.config import settings
 from app.core.logging import configure_logging
-from app.decision_engine.status import OrbStatus
+from app.decision_engine.orb import SigmaticsOrb
 
 
 def bootstrap() -> None:
-    """
-    Bootstraps the Sigmatics runtime.
-    """
 
     configure_logging()
 
@@ -18,17 +15,35 @@ def bootstrap() -> None:
     logger.info("SIGMATICS")
     logger.info("=" * 60)
 
-    logger.info("Application : %s", settings.application_name)
-    logger.info("Version     : %s", settings.version)
+    logger.info(
+        "Application : %s",
+        settings.application_name,
+    )
 
-    logger.info("Configuration Loaded")
+    logger.info(
+        "Version     : %s",
+        settings.version,
+    )
 
-    logger.info("Decision Pipeline Pending")
+    orb = SigmaticsOrb()
 
-    logger.info("Decision Stages Pending")
+    orb.start()
 
-    logger.info("Orb Status : %s", OrbStatus.INITIALIZING)
+    context = orb.execute()
+    
+    logger.info(
+        "Decision Context : %s",
+        context.decision_id,
+    )
 
+    logger.info("=" * 60)
+    logger.info(
+        "Orb Status : %s",
+        orb.status.value,
+    )
+    logger.info(
+        "Awaiting Market Snapshot..."
+    )
     logger.info("=" * 60)
 
 
