@@ -154,6 +154,14 @@ Manage user regulatory compliance acknowledgementsby the user.
 - ConsentRecord
 - ComplianceEvent
 
+### Success Criteria
+
+- 100% of users accept the latest mandatory policies before broker connection.
+- Every acceptance is fully auditable.
+- Policy version history is preserved.
+- Compliance events are immutable.
+- Regulatory prompts are version-aware.
+
 ---
 
 ## CAP-001 — Identity & Access (IAM)

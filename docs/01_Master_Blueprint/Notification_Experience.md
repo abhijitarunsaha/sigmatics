@@ -152,6 +152,20 @@ Expired
 
 ---
 
+# Silent Updates
+
+# Recommendation Updates
+
+# Recommendation Expiry
+
+# Recommendation Superseded
+
+# Review & Execute
+
+# Execute Anyway
+
+# Refresh Recommendation
+
 # Compliance Principles
 
 Notifications shall never:
