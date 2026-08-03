@@ -1,7 +1,7 @@
 import logging
 import sys
 
-from app.core.config import settings
+from app.core.config import get_settings
 
 
 LOG_FORMAT = (
@@ -11,6 +11,8 @@ LOG_FORMAT = (
     "%(message)s"
 )
 
+settings = get_settings()
+
 
 def configure_logging() -> None:
     """
@@ -18,7 +20,7 @@ def configure_logging() -> None:
     """
 
     logging.basicConfig(
-        level=settings.log_level,
+        level=settings.log.log_level,
         format=LOG_FORMAT,
         stream=sys.stdout,
         force=True,

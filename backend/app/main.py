@@ -1,12 +1,14 @@
 import logging
 
-from app.core.config import settings
+from app.core.config import get_settings
 from app.core.logging import configure_logging
 from app.decision_engine.orb import SigmaticsOrb
 
 
 def bootstrap() -> None:
 
+    settings = get_settings()
+    
     configure_logging()
 
     logger = logging.getLogger("sigmatics.bootstrap")
@@ -17,12 +19,12 @@ def bootstrap() -> None:
 
     logger.info(
         "Application : %s",
-        settings.application_name,
+        settings.app.name,
     )
 
     logger.info(
         "Version     : %s",
-        settings.version,
+        settings.app.version,
     )
 
     orb = SigmaticsOrb()
