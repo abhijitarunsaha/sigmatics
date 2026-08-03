@@ -6,6 +6,9 @@ from uuid import uuid4
 from app.decision_engine.models.decision_evidence import DecisionEvidence
 from app.decision_engine.models.decision_journal import DecisionJournal
 from app.decision_engine.models.decision_state import DecisionState
+from app.market_data.models.market_snapshot import (
+    MarketSnapshot,
+)
 
 
 @dataclass(slots=True)
@@ -18,6 +21,8 @@ class EvaluationContext:
     decision_state: DecisionState = (
         DecisionState.OBSERVING
     )
+    
+    market_snapshot: MarketSnapshot | None = None
 
     evidence: DecisionEvidence = field(
         default_factory=DecisionEvidence

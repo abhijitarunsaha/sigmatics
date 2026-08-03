@@ -10,13 +10,17 @@ from app.market_data.services.market_snapshot_service import (
     MarketSnapshotService,
 )
 
+from app.market_data.providers.kite.kite_market_snapshot_provider import (
+    KiteMarketSnapshotProvider,
+)
+
 
 class StageRegistry:
 
     def __init__(self) -> None:
 
         market_snapshot_provider = (
-            MockMarketSnapshotProvider()
+            KiteMarketSnapshotProvider()
         )
 
         market_snapshot_service = (

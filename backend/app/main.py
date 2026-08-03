@@ -4,7 +4,6 @@ from app.core.config import get_settings
 from app.core.logging import configure_logging
 from app.decision_engine.orb import SigmaticsOrb
 
-
 def bootstrap() -> None:
 
     settings = get_settings()
