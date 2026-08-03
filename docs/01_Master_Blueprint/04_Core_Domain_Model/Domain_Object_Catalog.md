@@ -22,6 +22,9 @@ Canonical domain objects represent business concepts rather than persistence ent
 | Structure Analysis | Structure Agent | Context Agent | CAP-004 |
 | Market Context | Context Agent | Strategy Agent | CAP-004 |
 | Trading Decision | Strategy Agent | Risk Agent | CAP-004 |
+| Decision Journal | Immutable reasoning history associated with a Decision Package | Context Agent | CAP-004 |
+| Decision Journal Entry | Individual reasoning observation recorded during evaluation | Context Agent | CAP-004 |
+| Reasoning Recorder | Runtime component responsible for constructing the active Decision Journal | Context Agent | CAP-004 |
 | Risk Assessment | Risk Agent | Trade Optimization Engine | CAP-005 |
 | Option Recommendation | Trade Optimization Engine | Execution Planner | CAP-005 |
 | Execution Plan | Execution Planner | Broker Adapter | CAP-005 |

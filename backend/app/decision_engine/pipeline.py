@@ -1,14 +1,18 @@
 from __future__ import annotations
 
-import logging
-
-from app.decision_engine.models.decision_context import DecisionContext
 from app.decision_engine.registry import StageRegistry
+from app.decision_engine.contracts.stage import DecisionStage
 
 
 class DecisionPipeline:
     """
-    Executes registered Decision Stages.
+    Defines the ordered sequence of
+    Decision Stages.
+
+    The pipeline does not execute stages.
+
+    Execution is orchestrated exclusively
+    by the Decision Engine.
     """
 
     def __init__(
@@ -16,26 +20,11 @@ class DecisionPipeline:
         registry: StageRegistry,
     ) -> None:
 
-        self._logger = logging.getLogger(__name__)
         self._registry = registry
 
-    def execute(
+    @property
+    def stages(
         self,
-        context: DecisionContext,
-    ) -> DecisionContext:
+    ) -> tuple[DecisionStage, ...]:
 
-        self._logger.info(
-            "Executing Decision Pipeline (%d stages)",
-            len(self._registry.stages),
-        )
-
-        for stage in self._registry.stages:
-
-            self._logger.info(
-                "Executing stage: %s",
-                stage.name,
-            )
-
-            context = stage.execute(context)
-
-        return context
+        return tuple(self._registry.stages)

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 
-from app.decision_engine.models.decision_context import DecisionContext
+from app.decision_engine.models.evaluation_context import EvaluationContext
 from app.decision_engine.runtime import OrbRuntime
 from app.decision_engine.status import OrbStatus
 
@@ -46,7 +46,7 @@ class SigmaticsOrb:
             OrbStatus.IDLE,
         )
 
-    def execute(self) -> DecisionContext:
+    def execute(self) -> EvaluationContext:
         """
         Execute a Decision Cycle.
 
@@ -62,12 +62,22 @@ class SigmaticsOrb:
             OrbStatus.OBSERVING,
         )
 
-        context = DecisionContext()
+        context = EvaluationContext()
 
-        context = self._runtime.engine.process(
+        context = self._runtime.engine.evaluate(
             context,
         )
 
+        self._logger.info(
+            "\n%s",
+            context.summary(),
+        )
+
+        self._logger.info(
+            "\n%s",
+            context.journal.pretty_print(),
+        )
+        
         self._transition_to(
             OrbStatus.IDLE,
         )

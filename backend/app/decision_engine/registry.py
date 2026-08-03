@@ -1,32 +1,37 @@
-from __future__ import annotations
+from app.decision_engine.stages.market_snapshot_stage import (
+    MarketSnapshotStage,
+)
 
-from app.decision_engine.contracts.stage import DecisionStage
+from app.market_data.providers.mock.mock_market_snapshot_provider import (
+    MockMarketSnapshotProvider,
+)
+
+from app.market_data.services.market_snapshot_service import (
+    MarketSnapshotService,
+)
 
 
 class StageRegistry:
-    """
-    Registry responsible for maintaining
-    the ordered list of Decision Stages.
-    """
 
     def __init__(self) -> None:
-        self._stages: list[DecisionStage] = []
 
-    def register(
-        self,
-        stage: DecisionStage,
-    ) -> None:
-        """
-        Register a Decision Stage.
-        """
+        market_snapshot_provider = (
+            MockMarketSnapshotProvider()
+        )
 
-        self._stages.append(stage)
+        market_snapshot_service = (
+            MarketSnapshotService(
+                market_snapshot_provider,
+            )
+        )
+
+        self._stages = (
+            MarketSnapshotStage(
+                service=market_snapshot_service,
+            ),
+        )
 
     @property
-    def stages(self) -> tuple[DecisionStage, ...]:
-        """
-        Returns an immutable view
-        of the registered stages.
-        """
+    def stages(self):
 
-        return tuple(self._stages)
+        return self._stages

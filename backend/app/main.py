@@ -32,8 +32,8 @@ def bootstrap() -> None:
     context = orb.execute()
     
     logger.info(
-        "Decision Context : %s",
-        context.decision_id,
+        "Evaluation ID : %s",
+        context.evaluation_id,
     )
 
     logger.info("=" * 60)
