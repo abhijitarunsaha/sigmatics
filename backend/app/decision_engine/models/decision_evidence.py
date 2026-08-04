@@ -17,10 +17,10 @@ class DecisionEvidence:
         self,
         bucket: EvidenceBucket,
     ) -> None:
-        """
-        Adds an evidence bucket.
-        """
-        self.buckets.append(bucket)
+
+        self.buckets.append(
+            bucket,
+        )
     
     def count(self) -> int:
         return len(self.buckets)
@@ -30,3 +30,11 @@ class DecisionEvidence:
     ) -> int:
 
         return self.count()
+    
+    def __iter__(
+        self,
+    ):
+
+        return iter(
+            self.buckets,
+        )

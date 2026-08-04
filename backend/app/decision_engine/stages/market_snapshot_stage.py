@@ -13,6 +13,17 @@ from app.market_data.services.market_snapshot_service import (
 )
 from app.decision_engine.contracts.stage import DecisionStage
 from app.decision_engine.models.evaluation_context import EvaluationContext
+from app.decision_engine.models.market_snapshot_evidence import (
+    MarketSnapshotEvidence,
+)
+
+from app.decision_engine.models.evidence_bucket import (
+    EvidenceBucket,
+)
+
+from app.decision_engine.models.market_snapshot_evidence import (
+    MarketSnapshotEvidence,
+)
 
 
 class MarketSnapshotStage(
@@ -51,25 +62,18 @@ class MarketSnapshotStage(
             )
 
         context.market_snapshot = snapshot
+        
+        bucket = EvidenceBucket(
+            provider=snapshot.source,
+            evidence=MarketSnapshotEvidence(
+                snapshot=snapshot,
+            ),
+        )
 
         return StageResult.success(
             stage=self.name,
+            evidence=bucket,
             observations=[
-                (
-                    f"Snapshot captured "
-                    f"from {snapshot.source}"
-                ),
-                (
-                    f"Captured At : "
-                    f"{snapshot.captured_at.isoformat()}"
-                ),
-                (
-                    f"Market Status : "
-                    f"{snapshot.status.value}"
-                ),
-                (
-                    f"Market Session : "
-                    f"{snapshot.session.value}"
-                ),
+                "Market snapshot successfully collected.",
             ],
         )

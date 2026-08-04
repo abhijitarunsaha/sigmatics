@@ -106,6 +106,11 @@ class DecisionEngine:
             context.evidence.add(
                 result.evidence,
             )
+            
+        self._logger.info(
+            "StageResult evidence present: %s",
+            result.evidence is not None,
+        )
 
         recorder.record(
             DecisionJournalEntry(
@@ -117,8 +122,8 @@ class DecisionEngine:
                     else None
                 ),
                 observations=result.observations,
-                evidence_bucket_id=(
-                    result.evidence.bucket_id
+                evidence_bucket=(
+                    result.evidence
                     if result.evidence
                     else None
                 ),

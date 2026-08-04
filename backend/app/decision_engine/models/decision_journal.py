@@ -63,11 +63,17 @@ class DecisionJournal:
                     f"Decision State  : {entry.decision_state}"
                 )
 
-            if entry.evidence_bucket_id:
+            if entry.evidence_bucket:
 
-                lines.append(
-                    f"Evidence Bucket : {entry.evidence_bucket_id}"
-                )
+                evidence = entry.evidence_bucket.evidence
+
+                lines.append("")
+                lines.append(evidence.evidence_type.value)
+                lines.append("-" * 28)
+
+                for item in evidence.summary():
+
+                    lines.append(f"  • {item}")
 
             lines.append("Observations")
 
@@ -76,6 +82,26 @@ class DecisionJournal:
                 lines.append(
                     f"  • {observation}"
                 )
+            
+            if entry.evidence_bucket:
+
+                evidence = entry.evidence_bucket.evidence
+
+                if evidence:
+
+                    lines.append("")
+                    lines.append("Evidence")
+                    lines.append("-" * 28)
+
+                    lines.append(
+                        f"Type : {evidence.evidence_type.value}"
+                    )
+
+                    for item in evidence.summary():
+
+                        lines.append(
+                            f"  • {item}"
+                        )
 
         lines.append("")
         lines.append("=" * 60)

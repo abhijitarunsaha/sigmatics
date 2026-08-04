@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from app.decision_engine.models.evidence_bucket import EvidenceBucket
+
 
 @dataclass(slots=True)
 class DecisionJournalEntry:
@@ -20,4 +22,4 @@ class DecisionJournalEntry:
         default_factory=list,
     )
 
-    evidence_bucket_id: str | None = None
+    evidence_bucket: EvidenceBucket | None = None

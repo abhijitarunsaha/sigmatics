@@ -20,6 +20,9 @@ from app.market_data.providers.kite.kite_client import (
 from app.market_data.providers.kite.quote_mapper import (
     QuoteMapper,
 )
+from app.market_data.services.market_calendar import (
+    MarketCalendar,
+)
 
 
 class KiteMarketSnapshotProvider(
@@ -41,6 +44,8 @@ class KiteMarketSnapshotProvider(
         self._client = KiteClient(
             session,
         )
+        
+        self._calendar = MarketCalendar()
 
     def get_snapshot(
         self,
@@ -86,29 +91,9 @@ class KiteMarketSnapshotProvider(
             quotes["NSE:INDIA VIX"],
         )
 
-        now = datetime.now(
-            UTC,
+        status, session = (
+            self._calendar.current()
         )
-
-        #
-        # Temporary session detection.
-        # We will later replace this
-        # with an Exchange Calendar.
-        #
-
-        hour = now.hour
-
-        if 9 <= hour < 16:
-
-            status = MarketStatus.OPEN
-
-            session = MarketSession.REGULAR
-
-        else:
-
-            status = MarketStatus.CLOSED
-
-            session = MarketSession.POST_MARKET
 
         return MarketSnapshot.create(
             source="kite",

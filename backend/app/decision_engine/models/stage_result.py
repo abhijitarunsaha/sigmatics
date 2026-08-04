@@ -53,16 +53,15 @@ class StageResult:
         *,
         stage: str,
         observations: list[str] | None = None,
+        evidence: EvidenceBucket | None = None,
         decision_state: DecisionState | None = None,
     ) -> "StageResult":
-        """
-        Creates a WAIT StageResult.
-        """
 
         return cls(
             stage=stage,
             status=StageStatus.WAIT,
             decision_state=decision_state,
+            evidence=evidence,
             observations=observations or [],
         )
 
@@ -72,6 +71,7 @@ class StageResult:
         *,
         stage: str,
         observations: list[str] | None = None,
+        evidence: EvidenceBucket | None = None,
         decision_state: DecisionState | None = None,
     ) -> "StageResult":
         """
@@ -82,5 +82,6 @@ class StageResult:
             stage=stage,
             status=StageStatus.FAILED,
             decision_state=decision_state,
+            evidence=evidence,
             observations=observations or [],
         )
