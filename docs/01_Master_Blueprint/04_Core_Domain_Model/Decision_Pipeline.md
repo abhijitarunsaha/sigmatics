@@ -10,6 +10,40 @@ No component bypasses the pipeline.
 
 ---
 
+# Flow Summary
+
+Decision Engine
+
+↓
+
+Executes Decision Stages
+
+↓
+
+Collects Evidence
+
+↓
+
+Records Reasoning
+
+↓
+
+Synthesizes Confidence
+
+↓
+
+Constructs Decision
+
+↓
+
+Produces Decision Package
+
+↓
+
+Hands Journal for Persistence
+
+---
+
 # Pipeline
 
 External Signals
